@@ -1,0 +1,15 @@
+name: Review Test
+on:
+  pull_request_review:
+    types: [submitted]
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Review submitted by: ${{ github.event.review.user.login }}"
+          echo "PR author: ${{ github.event.pull_request.user.login }}"
+          echo "Review body: ${{ github.event.review.body }}"
+          echo "Author association: ${{ github.event.review.author_association }}"
+          echo "Review state: ${{ github.event.review.state }}"
+          echo "Self-review: ${{ github.event.review.user.login == github.event.pull_request.user.login }}"
